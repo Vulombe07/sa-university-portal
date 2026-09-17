@@ -5,6 +5,8 @@ import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
 import ProgrammeSearch from "./pages/ProgrammeSearch";
 import ProgrammeDetails from "./pages/ProgrammeDetails";
+import Eligibility from "./pages/Eligibility";
+import Applications from "./pages/Applications";
 
 function App() {
   const [page, setPage] = useState("login");
@@ -32,6 +34,14 @@ function App() {
 
   if (page === "profile") {
     return <Profile setPage={setPage} />;
+  }
+
+  if (page === "eligibility") {
+    return <Eligibility setPage={navigate} />;
+  }
+
+  if (page === "applications") {
+    return <Applications setPage={navigate} />;
   }
 
   if(page === "programmes") {

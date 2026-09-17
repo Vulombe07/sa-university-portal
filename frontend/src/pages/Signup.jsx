@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { FileUp, UploadCloud } from "lucide-react";
 
 function Signup({ setPage }) {
   const [formData, setFormData] = useState({
@@ -16,6 +17,9 @@ function Signup({ setPage }) {
     confirmPassword: "",
   });
 
+  const [matricCertificate, setMatricCertificate] = useState(null);
+  const [submitError, setSubmitError] = useState("");
+
   const [subjects, setSubjects] = useState([
     { subject: "", mark: "" },
   ]);
@@ -27,7 +31,6 @@ function Signup({ setPage }) {
     "Life Sciences",
     "Accounting",
     "Business Studies",
-    "Economics",
     "Geography",
     "History",
     "Computer Applications Technology",
@@ -35,9 +38,6 @@ function Signup({ setPage }) {
     "English",
     "Afrikaans",
     "IsiZulu",
-    "Sepedi",
-    "Sesotho",
-    "Setswana",
     "Life Orientation",
   ];
 
@@ -89,6 +89,25 @@ function Signup({ setPage }) {
     setSubjects(updatedSubjects);
   };
 
+  const handleCertificateChange = (e) => {
+    const file = e.target.files?.[0];
+
+    if (!file) {
+      setMatricCertificate(null);
+      return;
+    }
+
+    if (file.size > 10 * 1024 * 1024) {
+      setSubmitError("Your matric certificate must be smaller than 10 MB.");
+      e.target.value = "";
+      setMatricCertificate(null);
+      return;
+    }
+
+    setSubmitError("");
+    setMatricCertificate(file);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -109,13 +128,15 @@ function Signup({ setPage }) {
       }
     }
 
-    console.log("Signup data:", {
-      ...formData,
-      subjects,
-    });
+    if (!matricCertificate) {
+      setSubmitError("Please upload your matric certificate before creating your account.");
+      return;
+    }
 
-    alert("Account created successfully!");
+    //this is where you would send the data to backend to do hat it needs to do
+    const signupData = { ...formData, subjects, matricCertificate };
 
+    //goes to the next page, valodation is done before so you can assume all the data is valid to an extent
     setPage("login");
   };
 
@@ -185,6 +206,23 @@ function Signup({ setPage }) {
               </div>
 
             </div>
+          </section>
+
+          <section className="form-section certificate-section">
+            <div className="section-heading">
+              <div>
+                <h2>Matric Certificate</h2>
+                <p>Upload a PDF, JPEG or PNG of your latest matric certificate.</p>
+              </div>
+              <FileUp size={22} className="certificate-heading-icon" />
+            </div>
+
+            <label className={`certificate-upload ${matricCertificate ? "has-file" : ""}`}>
+              <input type="file" accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png" onChange={handleCertificateChange} required />
+              <UploadCloud size={22} />
+              <span>{matricCertificate ? matricCertificate.name : "Choose a certificate from your files"}</span>
+              <small>{matricCertificate ? `${(matricCertificate.size / 1024 / 1024).toFixed(2)} MB selected` : "Maximum file size: 10 MB"}</small>
+            </label>
           </section>
 
 
@@ -454,6 +492,8 @@ function Signup({ setPage }) {
             >
               Back to Login
             </button>
+
+            {submitError && <p className="submit-error" role="alert">{submitError}</p>}
 
             <button
               type="submit"

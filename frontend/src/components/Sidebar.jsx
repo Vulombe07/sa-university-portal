@@ -1,4 +1,4 @@
-import { LayoutDashboard, UserRound, Search, ListChecks, ClipboardCheck, GraduationCap } from "lucide-react";
+import { LayoutDashboard, UserRound, Search, ListChecks, ClipboardCheck, GraduationCap, LogOut } from "lucide-react";
 
 const items = [
   { id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -34,6 +34,14 @@ export default function Sidebar({ setPage, activePage }) {
             </button>
           );
         })}
+        <button
+          type="button"
+          className="nav-item sidebar-logout"
+          onClick={() => setPage && setPage("login")}
+        >
+          <LogOut size={17} />
+          Log out
+        </button>
       </nav>
     </aside>
   );

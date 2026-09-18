@@ -11,7 +11,6 @@ import Applications from "./pages/Applications";
 function App() {
   const [page, setPage] = useState("login");
   const [selectedProgramme, setSelectedProgramme] = useState(null);
-
   const navigate = (nextPage, programme = null) => {
     if (programme) {
       setSelectedProgramme(programme);

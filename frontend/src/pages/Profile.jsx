@@ -1,21 +1,16 @@
 import "../App.css";
 import AppLayout from "../components/AppLayout";
 import { useState } from "react";
-import { Award, BarChart3, BookOpen, CheckCircle2, Download, Edit3, GraduationCap, Mail, MapPin, Phone } from "lucide-react";
+import { Award, BarChart3, BookOpen, CalendarDays, CheckCircle2, Download, Edit3, GraduationCap, Mail, MapPin, Phone } from "lucide-react";
 
 // Replace this object with the authenticated student's profile response.
 const profileData = {
-  identity: { initials: "AM", name: "Amina Mokoena", major: "Computer Science", school: "University of Cape Town" },
+  identity: { initials: "AM", name: "Amina Mokoena", school: "University of Cape Town" },
   personal: {
+    birthday: "12 March 2008",
     email: "amina.mokoena@student.uct.ac.za",
     phone: "+27 82 447 2180",
     location: "Cape Town, South Africa",
-    bio: "Aspiring software engineer with a strong interest in AI, product design, and data-driven solutions.",
-    highlights: [
-      { label: "Academic excellence", value: "Dean's List 2024" },
-      { label: "Research interest", value: "Artificial Intelligence" },
-      { label: "Career focus", value: "Software Engineering" },
-    ],
     documents: [
       { name: "Transcript.pdf", updated: "Updated 3 days ago", type: "PDF" },
       { name: "Motivation Letter.docx", updated: "Updated 1 week ago", type: "DOC" },
@@ -24,7 +19,7 @@ const profileData = {
   },
   academic: {
     apsScore: 42,
-    averageMark: 86,
+    averageMark: 86,//if there is no function to cal mark then just remove i
     academicStanding: "Excellent standing",
     subjects: [
       { name: "Mathematics", mark: 88, level: "Level 7" },
@@ -54,8 +49,6 @@ export default function Profile({ setPage }) {
               <p className="eyebrow">Student profile</p>
               <h1>{identity.name}</h1>
               <div className="profile-meta-row">
-                <span>{identity.major}</span>
-                <span className="dot" />
                 <span>{identity.school}</span>
               </div>
             </div>
@@ -75,20 +68,15 @@ export default function Profile({ setPage }) {
 
         {activeTab === "personal" ? (
           <>
-            <section className="profile-grid">
+            <section className="profile-grid profile-personal-grid">
               <div className="card-panel profile-about">
                 <div className="panel-head compact"><div><p className="eyebrow">About</p><h2>Personal details</h2></div></div>
-                <p className="profile-bio">{personal.bio}</p>
+                {personal.bio && <p className="profile-bio">{personal.bio}</p>}
                 <div className="info-list">
+                  <div className="info-item"><CalendarDays size={16} /><span>{personal.birthday}</span></div>
                   <div className="info-item"><Mail size={16} /><span>{personal.email}</span></div>
                   <div className="info-item"><Phone size={16} /><span>{personal.phone}</span></div>
                   <div className="info-item"><MapPin size={16} /><span>{personal.location}</span></div>
-                </div>
-              </div>
-              <div className="card-panel profile-highlights">
-                <div className="panel-head compact"><div><p className="eyebrow">Highlights</p><h2>Profile strengths</h2></div></div>
-                <div className="highlight-list">
-                  {personal.highlights.map(({ label, value }) => <div key={label} className="highlight-item"><BookOpen size={15} /><div><small>{label}</small><strong>{value}</strong></div></div>)}
                 </div>
               </div>
             </section>

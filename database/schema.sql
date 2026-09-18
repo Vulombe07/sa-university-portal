@@ -128,7 +128,6 @@ CREATE TABLE programmes (
     name VARCHAR(255) NOT NULL,
     degree_type VARCHAR(100) NOT NULL,
     duration_years INTEGER NOT NULL,
-    campus VARCHAR(150),
 
     CONSTRAINT fk_programmes_faculty
         FOREIGN KEY (faculty_id)

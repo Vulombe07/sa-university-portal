@@ -13,7 +13,7 @@ export default function Dashboard({ setPage, dashboardData = dashboardFixture })
   const { student, metrics, recommendedProgrammes } = dashboardData;
 
   return (
-    <AppLayout setPage={setPage} activePage="dashboard" showTopBar>
+    <AppLayout setPage={setPage} activePage="dashboard" showTopBar={false}>
       <div className="dashboard-reference-page">
         <section className="dashboard-reference-welcome">
           <div><p className="eyebrow">Welcome back, {student.firstName} <span aria-hidden="true">👋</span></p><h1>Here&apos;s a quick overview of your university journey.</h1></div>

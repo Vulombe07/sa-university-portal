@@ -1488,8 +1488,6 @@ input {
 .details-panel-heading { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 15px; color: var(--blue); }
 .details-panel-heading .eyebrow { margin-bottom: 4px; font-size: 9px; }
 .details-panel-heading h2 { margin: 0; color: var(--navy); font-family: "Space Grotesk", sans-serif; font-size: 18px; letter-spacing: -.04em; }
-.details-overview-panel > p { margin: 0 0 11px; color: #62738b; font-size: 13px; line-height: 1.7; }
-.details-overview-panel > p:last-child { margin-bottom: 0; }
 .requirement-list { display: grid; gap: 10px; }
 .requirement-list div { display: flex; align-items: center; gap: 9px; padding: 11px 12px; border-radius: 9px; background: #f7fbff; color: #536781; font-size: 12px; }
 .requirement-list svg { flex: 0 0 auto; color: #15916c; }

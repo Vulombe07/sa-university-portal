@@ -1,7 +1,6 @@
 import {
 	ArrowLeft,
 	ArrowRight,
-	BookOpen,
 	CalendarDays,
 	CheckCircle2,
 	MapPin,
@@ -50,12 +49,6 @@ export default function ProgrammeDetails({ programme, setPage }) {
 
 				<div className="programme-details-grid">
 					<main className="details-content-column">
-						<section className="details-panel details-overview-panel">
-							<div className="details-panel-heading"><BookOpen size={17} /><div><p className="eyebrow">Programme overview</p><h2>Shape your future in technology</h2></div></div>
-							<p>{selectedProgramme.description}</p>
-							<p>{selectedProgramme.overview}</p>
-						</section>
-
 						<section className="details-panel">
 							<div className="details-panel-heading"><CheckCircle2 size={17} /><div><p className="eyebrow">Entry requirements</p><h2>What you need to apply</h2></div></div>
 							<div className="requirement-list">

@@ -80,7 +80,7 @@ def calculate_stellenbosch_nsc_average(marks):
             continue
         else:
              total = total + mark["percentage"]
-    return total/(len(marks)-1)
+    return total/6
 
 def calculate_uwc_aps(marks):
     aps = 0

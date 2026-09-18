@@ -13,7 +13,15 @@ import "../App.css";
 import AppLayout from "../components/AppLayout";
 import { programmes } from "../data/programmes";
 
-const popularSearches = ["Computer Science", "Engineering", "Medicine", "Law", "Business"];
+const popularSearches = ["Computer Science", "Engineering", "Medicine", "Law", "Commerce", "Psychology", "Architecture", "Data Science"];
+const facultyOptions = ["All faculties", "Humanities", "Science", "Engineering & Built Environment", "Health Sciences", "Commerce"];
+const facultyAliases = {
+	Humanities: ["humanities", "arts"],
+	Science: ["science"],
+	"Engineering & Built Environment": ["engineering", "built environment"],
+	"Health Sciences": ["health science", "health sciences", "medicine"],
+	Commerce: ["commerce", "economic", "management sciences", "business"],
+};
 
 function ProgrammeLogo({ initials, tone }) {
 	return <div className={`search-programme-logo ${tone}`}>{initials}</div>;
@@ -28,7 +36,8 @@ export default function ProgrammeSearch({ setPage }) {
 
 		return programmes.filter((programme) => {
 			const matchesQuery = !normalizedQuery || `${programme.name} ${programme.university} ${programme.faculty}`.toLowerCase().includes(normalizedQuery);
-			const matchesFaculty = faculty === "All faculties" || programme.faculty.includes(faculty);
+			const normalizedFaculty = programme.faculty.toLowerCase();
+			const matchesFaculty = faculty === "All faculties" || facultyAliases[faculty].some((alias) => normalizedFaculty.includes(alias));
 			return matchesQuery && matchesFaculty;
 		});
 	}, [faculty, query]);
@@ -74,7 +83,7 @@ export default function ProgrammeSearch({ setPage }) {
 						<div className="results-toolbar">
 							<div><p className="eyebrow">Results</p><h2>{visibleProgrammes.length} results for “{query || "all programmes"}”</h2></div>
 							<div className="filter-row">
-								<label className="filter-select"><span className="sr-only">Filter by faculty</span><select value={faculty} onChange={(event) => setFaculty(event.target.value)}><option>All faculties</option><option>Science</option><option>Engineering</option><option>Economic</option></select><ChevronDown size={14} /></label>
+								<label className="filter-select"><span className="sr-only">Filter by faculty</span><select value={faculty} onChange={(event) => setFaculty(event.target.value)}>{facultyOptions.map((option) => <option key={option}>{option}</option>)}</select><ChevronDown size={14} /></label>
 							</div>
 						</div>
 

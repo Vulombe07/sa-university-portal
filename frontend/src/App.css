@@ -1475,6 +1475,7 @@ input {
 .details-university { margin: 0 0 9px; color: #49617f; font-size: 13px; font-weight: 600; }
 .details-location { display: inline-flex; align-items: center; gap: 5px; color: var(--muted); font-size: 11px; }
 .details-hero-actions { display: grid; justify-items: end; gap: 12px; flex: 0 0 auto; }
+.details-hero-actions .eligibility-badge { gap: 7px; padding: 9px 14px; font-size: 12px; }
 .apply-button { justify-content: center; min-width: 137px; border-radius: 9px; padding: 11px 15px; }
 .details-stat-strip { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1px solid #e1eaf4; border-radius: 14px; background: #fff; }
 .details-stat-strip div { display: grid; gap: 5px; padding: 15px 18px; border-right: 1px solid #edf1f6; }

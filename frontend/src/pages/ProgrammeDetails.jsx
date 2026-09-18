@@ -4,10 +4,7 @@ import {
 	BookOpen,
 	CalendarDays,
 	CheckCircle2,
-	Clock3,
-	FileText,
 	MapPin,
-	Send,
 } from "lucide-react";
 import "../App.css";
 import AppLayout from "../components/AppLayout";
@@ -39,10 +36,9 @@ export default function ProgrammeDetails({ programme, setPage }) {
 					</div>
 					<div className="details-hero-actions">
 						<span className={`eligibility-badge ${selectedProgramme.eligible ? "eligible" : "review"}`}>
-							{selectedProgramme.eligible && <CheckCircle2 size={13} />}
+							{selectedProgramme.eligible && <CheckCircle2 size={16} />}
 							{selectedProgramme.eligible ? "You are eligible" : "Review requirements"}
 						</span>
-						<button type="button" className="primary-button apply-button"><Send size={15} /> Apply now</button>
 					</div>
 				</section>
 
@@ -50,7 +46,6 @@ export default function ProgrammeDetails({ programme, setPage }) {
 					<div><span>APS requirement</span><strong>{selectedProgramme.aps}</strong></div>
 					<div><span>Mathematics</span><strong>{selectedProgramme.maths}</strong></div>
 					<div><span>Duration</span><strong>{selectedProgramme.duration}</strong></div>
-					<div><span>Study mode</span><strong>{selectedProgramme.mode}</strong></div>
 				</section>
 
 				<div className="programme-details-grid">
@@ -68,10 +63,6 @@ export default function ProgrammeDetails({ programme, setPage }) {
 							</div>
 						</section>
 
-						<section className="details-panel">
-							<div className="details-panel-heading"><FileText size={17} /><div><p className="eyebrow">What you will study</p><h2>Core subjects</h2></div></div>
-							<div className="subject-chip-list">{selectedProgramme.subjects.map((subject) => <span key={subject}>{subject}</span>)}</div>
-						</section>
 					</main>
 
 					<aside className="details-side-column">
@@ -81,12 +72,6 @@ export default function ProgrammeDetails({ programme, setPage }) {
 							<p>Use your UniApply profile to submit a complete application in one place.</p>
 							<button type="button" className="primary-button apply-card-button">Start application <ArrowRight size={15} /></button>
 							<small>Applications close {selectedProgramme.closingDate}</small>
-						</section>
-						<section className="details-panel details-facts-panel">
-							<p className="eyebrow">At a glance</p>
-							<div><Clock3 size={15} /><span>Full-time study</span></div>
-							<div><MapPin size={15} /><span>{selectedProgramme.location}</span></div>
-							<div><BookOpen size={15} /><span>{selectedProgramme.faculty}</span></div>
 						</section>
 					</aside>
 				</div>

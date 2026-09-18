@@ -21,7 +21,7 @@ export default function Eligibility({ setPage, eligibilityData = eligibilityFixt
         <section className="concept-table-panel card-panel eligibility-results-table">
           <div className="concept-panel-heading"><div><p className="eyebrow">Eligibility results</p><h2>Programmes matched to your profile</h2></div><button type="button" className="concept-link" onClick={() => setPage("programmes")}>View all programmes <ChevronRight size={13} /></button></div>
           <div className="concept-table-wrap"><table className="concept-table"><thead><tr><th>Programme</th><th>University</th><th>APS</th><th>Your APS</th><th>Status</th><th /></tr></thead><tbody>{visibleProgrammes.map((programme) => <tr key={programme.id}><td><div className="table-programme"><span className={`table-logo ${programme.tone}`}>{programme.initials}</span><strong>{programme.name}</strong></div></td><td>{programme.university}</td><td>{programme.aps}</td><td>{eligibilityData.apsScore}</td><td><span className="table-status eligible"><Check size={11} /> Eligible</span></td><td><button type="button" className="table-action" onClick={() => setPage("programme-details", programme)}><ChevronRight size={15} /></button></td></tr>)}</tbody></table></div>
-          <div className="table-footer">Showing {visibleProgrammes.length} eligible programmes <button type="button"  >View all programmes <ChevronRight size={13} /></button></div>
+          <div className="table-footer">Showing {visibleProgrammes.length} eligible programmes</div>
         </section>
       </div>
     </AppLayout>

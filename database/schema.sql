@@ -278,3 +278,187 @@ INSERT INTO faculties (university_id, name)
 SELECT university_id, 'Engineering'
 FROM universities
 WHERE short_name = 'WITS';
+
+
+--wits(science)
+
+INSERT INTO programmes (
+    faculty_id,
+    name,
+    degree_type,
+    duration_years
+)
+SELECT
+    faculty_id,
+    'Actuarial Science',
+    'BSc',
+    3
+FROM faculties
+WHERE name = 'Science'
+  AND university_id = (
+      SELECT university_id
+      FROM universities
+      WHERE short_name = 'WITS'
+  );
+
+INSERT INTO programmes (faculty_id, name, degree_type, duration_years)
+SELECT faculty_id, 'Applied Chemistry', 'BSc', 3
+FROM faculties
+WHERE name = 'Science'
+  AND university_id = (SELECT university_id FROM universities WHERE short_name = 'WITS');
+
+INSERT INTO programmes (faculty_id, name, degree_type, duration_years)
+SELECT faculty_id, 'Astronomy and Astrophysics', 'BSc', 3
+FROM faculties
+WHERE name = 'Science'
+  AND university_id = (SELECT university_id FROM universities WHERE short_name = 'WITS');
+
+INSERT INTO programmes (faculty_id, name, degree_type, duration_years)
+SELECT faculty_id, 'Bachelor of Science (General)', 'BSc', 3
+FROM faculties
+WHERE name = 'Science'
+  AND university_id = (SELECT university_id FROM universities WHERE short_name = 'WITS');
+
+INSERT INTO programmes (faculty_id, name, degree_type, duration_years)
+SELECT faculty_id, 'Computational and Applied Mathematics', 'BSc', 3
+FROM faculties
+WHERE name = 'Science'
+  AND university_id = (SELECT university_id FROM universities WHERE short_name = 'WITS');
+
+INSERT INTO programmes (faculty_id, name, degree_type, duration_years)
+SELECT faculty_id, 'Computer Science', 'BSc', 3
+FROM faculties
+WHERE name = 'Science'
+  AND university_id = (SELECT university_id FROM universities WHERE short_name = 'WITS');
+
+-- WITS (HUMANITIES PROGRAMMES)
+
+
+INSERT INTO programmes (faculty_id, name, degree_type, duration_years)
+SELECT faculty_id, 'Bachelor of Arts (BA)', 'BA', 3
+FROM faculties
+WHERE name = 'Humanities'
+  AND university_id = (SELECT university_id FROM universities WHERE short_name = 'WITS');
+
+INSERT INTO programmes (faculty_id, name, degree_type, duration_years)
+SELECT faculty_id, 'Digital Arts', 'BA Digital Arts', 4
+FROM faculties
+WHERE name = 'Humanities'
+  AND university_id = (SELECT university_id FROM universities WHERE short_name = 'WITS');
+
+INSERT INTO programmes (faculty_id, name, degree_type, duration_years)
+SELECT faculty_id, 'Film and Television', 'BAFT', 4
+FROM faculties
+WHERE name = 'Humanities'
+  AND university_id = (SELECT university_id FROM universities WHERE short_name = 'WITS');
+
+INSERT INTO programmes (faculty_id, name, degree_type, duration_years)
+SELECT faculty_id, 'Fine Arts', 'BAFA', 4
+FROM faculties
+WHERE name = 'Humanities'
+  AND university_id = (SELECT university_id FROM universities WHERE short_name = 'WITS');
+
+INSERT INTO programmes (faculty_id, name, degree_type, duration_years)
+SELECT faculty_id, 'Bachelor of Music', 'BMus', 4
+FROM faculties
+WHERE name = 'Humanities'
+  AND university_id = (SELECT university_id FROM universities WHERE short_name = 'WITS');
+
+--wits health sciences
+
+INSERT INTO programmes (faculty_id, name, degree_type, duration_years)
+SELECT faculty_id, 'Dental Science', 'BDS', 5
+FROM faculties
+WHERE name = 'Health Sciences'
+  AND university_id = (SELECT university_id FROM universities WHERE short_name = 'WITS');
+
+INSERT INTO programmes (faculty_id, name, degree_type, duration_years)
+SELECT faculty_id, 'Medicine and Surgery', 'MBBCh', 6
+FROM faculties
+WHERE name = 'Health Sciences'
+  AND university_id = (SELECT university_id FROM universities WHERE short_name = 'WITS');
+
+INSERT INTO programmes (faculty_id, name, degree_type, duration_years)
+SELECT faculty_id, 'Nursing', 'BNurs', 4
+FROM faculties
+WHERE name = 'Health Sciences'
+  AND university_id = (SELECT university_id FROM universities WHERE short_name = 'WITS');
+
+INSERT INTO programmes (faculty_id, name, degree_type, duration_years)
+SELECT faculty_id, 'Pharmacy', 'BPharm', 4
+FROM faculties
+WHERE name = 'Health Sciences'
+  AND university_id = (SELECT university_id FROM universities WHERE short_name = 'WITS');
+
+INSERT INTO programmes (faculty_id, name, degree_type, duration_years)
+SELECT faculty_id, 'Biomedical Sciences', 'BHSc', 3
+FROM faculties
+WHERE name = 'Health Sciences'
+  AND university_id = (SELECT university_id FROM universities WHERE short_name = 'WITS');
+
+
+
+
+
+-- wits (commerce, law and management)
+INSERT INTO programmes (faculty_id, name, degree_type, duration_years)
+SELECT faculty_id, 'Bachelor of Laws (LLB)', 'LLB', 4
+FROM faculties
+WHERE name = 'Commerce and Law Management'
+  AND university_id = (SELECT university_id FROM universities WHERE short_name = 'WITS');
+
+INSERT INTO programmes (faculty_id, name, degree_type, duration_years)
+SELECT faculty_id, 'Accounting', 'BCom', 3
+FROM faculties
+WHERE name = 'Commerce and Law Management'
+  AND university_id = (SELECT university_id FROM universities WHERE short_name = 'WITS');
+
+INSERT INTO programmes (faculty_id, name, degree_type, duration_years)
+SELECT faculty_id, 'Economic Science', 'BEconSc', 3
+FROM faculties
+WHERE name = 'Commerce and Law Management'
+  AND university_id = (SELECT university_id FROM universities WHERE short_name = 'WITS');
+
+INSERT INTO programmes (faculty_id, name, degree_type, duration_years)
+SELECT faculty_id, 'Accounting Science', 'BAccSc', 3
+FROM faculties
+WHERE name = 'Commerce and Law Management'
+  AND university_id = (SELECT university_id FROM universities WHERE short_name = 'WITS');
+
+INSERT INTO programmes (faculty_id, name, degree_type, duration_years)
+SELECT faculty_id, 'Information Systems', 'BCom', 3
+FROM faculties
+WHERE name = 'Commerce and Law Management'
+  AND university_id = (SELECT university_id FROM universities WHERE short_name = 'WITS');
+
+--wits (engineering)
+
+INSERT INTO programmes (faculty_id, name, degree_type, duration_years)
+SELECT faculty_id, 'Aeronautical Engineering', 'BSc (Eng)', 4
+FROM faculties
+WHERE name = 'Engineering'
+  AND university_id = (SELECT university_id FROM universities WHERE short_name = 'WITS');
+
+INSERT INTO programmes (faculty_id, name, degree_type, duration_years)
+SELECT faculty_id, 'Chemical Engineering', 'BSc (Eng)', 4
+FROM faculties
+WHERE name = 'Engineering'
+  AND university_id = (SELECT university_id FROM universities WHERE short_name = 'WITS');
+
+INSERT INTO programmes (faculty_id, name, degree_type, duration_years)
+SELECT faculty_id, 'Civil Engineering', 'BSc (Eng)', 4
+FROM faculties
+WHERE name = 'Engineering'
+  AND university_id = (SELECT university_id FROM universities WHERE short_name = 'WITS');
+
+INSERT INTO programmes (faculty_id, name, degree_type, duration_years)
+SELECT faculty_id, 'Electrical Engineering', 'BSc (Eng)', 4
+FROM faculties
+WHERE name = 'Engineering'
+  AND university_id = (SELECT university_id FROM universities WHERE short_name = 'WITS');
+
+INSERT INTO programmes (faculty_id, name, degree_type, duration_years)
+SELECT faculty_id, 'Mechanical Engineering', 'BSc (Eng)', 4
+FROM faculties
+WHERE name = 'Engineering'
+  AND university_id = (SELECT university_id FROM universities WHERE short_name = 'WITS');

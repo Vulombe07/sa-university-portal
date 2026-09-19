@@ -252,3 +252,29 @@ CREATE TABLE application_documents (
         REFERENCES documents(document_id)
         ON DELETE CASCADE
 );
+
+--Adding faculties
+INSERT INTO faculties (university_id, name)
+SELECT university_id, 'Science'
+FROM universities
+WHERE short_name = 'WITS';
+
+INSERT INTO faculties (university_id, name)
+SELECT university_id, 'Humanities'
+FROM universities
+WHERE short_name = 'WITS';
+
+INSERT INTO faculties (university_id, name)
+SELECT university_id, 'Health Sciences'
+FROM universities
+WHERE short_name = 'WITS';
+
+INSERT INTO faculties (university_id, name)
+SELECT university_id, 'Commerce, Law and Management'
+FROM universities
+WHERE short_name = 'WITS';
+
+INSERT INTO faculties (university_id, name)
+SELECT university_id, 'Engineering'
+FROM universities
+WHERE short_name = 'WITS';

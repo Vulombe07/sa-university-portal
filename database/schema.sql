@@ -105,14 +105,16 @@ CREATE TABLE universities (
 
 CREATE TABLE faculties (
     faculty_id SERIAL PRIMARY KEY,
-
     university_id INTEGER NOT NULL,
     name VARCHAR(255) NOT NULL,
 
     CONSTRAINT fk_faculties_university
         FOREIGN KEY (university_id)
         REFERENCES universities(university_id)
-        ON DELETE CASCADE
+        ON DELETE CASCADE,
+
+    CONSTRAINT uq_faculties_university_name
+        UNIQUE (university_id, name)
 );
 
 
@@ -255,29 +257,16 @@ CREATE TABLE application_documents (
 
 --Adding faculties
 INSERT INTO faculties (university_id, name)
-SELECT university_id, 'Science'
+SELECT university_id, faculty_name
 FROM universities
-WHERE short_name = 'WITS';
-
-INSERT INTO faculties (university_id, name)
-SELECT university_id, 'Humanities'
-FROM universities
-WHERE short_name = 'WITS';
-
-INSERT INTO faculties (university_id, name)
-SELECT university_id, 'Health Sciences'
-FROM universities
-WHERE short_name = 'WITS';
-
-INSERT INTO faculties (university_id, name)
-SELECT university_id, 'Commerce, Law and Management'
-FROM universities
-WHERE short_name = 'WITS';
-
-INSERT INTO faculties (university_id, name)
-SELECT university_id, 'Engineering'
-FROM universities
-WHERE short_name = 'WITS';
+CROSS JOIN (
+    VALUES
+        ('Science'),
+        ('Humanities'),
+        ('Health Sciences'),
+        ('Commerce, Law and Management'),
+        ('Engineering')
+) AS faculty_list(faculty_name);
 
 
 --wits(science)
@@ -462,3 +451,180 @@ SELECT faculty_id, 'Mechanical Engineering', 'BSc (Eng)', 4
 FROM faculties
 WHERE name = 'Engineering'
   AND university_id = (SELECT university_id FROM universities WHERE short_name = 'WITS');
+
+
+
+
+-- UCT DATA FROM HERE
+
+
+-- UCT - SCIENCE PROGRAMMES
+
+
+INSERT INTO programmes (faculty_id, name, degree_type, duration_years)
+SELECT faculty_id, 'Astrophysics', 'BSc', 3
+FROM faculties
+WHERE name = 'Science'
+  AND university_id = (
+      SELECT university_id
+      FROM universities
+      WHERE short_name = 'UCT'
+  );
+
+INSERT INTO programmes (faculty_id, name, degree_type, duration_years)
+SELECT faculty_id, 'Computer Science', 'BSc', 3
+FROM faculties
+WHERE name = 'Science'
+  AND university_id = (
+      SELECT university_id
+      FROM universities
+      WHERE short_name = 'UCT'
+  );
+
+INSERT INTO programmes (faculty_id, name, degree_type, duration_years)
+SELECT faculty_id, 'Geology', 'BSc', 3
+FROM faculties
+WHERE name = 'Science'
+  AND university_id = (
+      SELECT university_id
+      FROM universities
+      WHERE short_name = 'UCT'
+  );
+
+
+-- UCT - ENGINEERING PROGRAMMES
+
+
+INSERT INTO programmes (faculty_id, name, degree_type, duration_years)
+SELECT faculty_id, 'Architectural Studies', 'BAS', 3
+FROM faculties
+WHERE name = 'Engineering'
+  AND university_id = (
+      SELECT university_id
+      FROM universities
+      WHERE short_name = 'UCT'
+  );
+
+INSERT INTO programmes (faculty_id, name, degree_type, duration_years)
+SELECT faculty_id, 'Chemical Engineering', 'BSc(Eng)', 4
+FROM faculties
+WHERE name = 'Engineering'
+  AND university_id = (
+      SELECT university_id
+      FROM universities
+      WHERE short_name = 'UCT'
+  );
+
+INSERT INTO programmes (faculty_id, name, degree_type, duration_years)
+SELECT faculty_id, 'Geomatics: Surveying Stream', 'BSc(Geomatics)', 4
+FROM faculties
+WHERE name = 'Engineering'
+  AND university_id = (
+      SELECT university_id
+      FROM universities
+      WHERE short_name = 'UCT'
+  );
+
+
+
+
+-- UCT - HEALTH SCIENCES PROGRAMMES
+
+
+INSERT INTO programmes (faculty_id, name, degree_type, duration_years)
+SELECT faculty_id, 'Medicine and Surgery', 'MBChB', 6
+FROM faculties
+WHERE name = 'Health Sciences'
+  AND university_id = (
+      SELECT university_id
+      FROM universities
+      WHERE short_name = 'UCT'
+  );
+
+INSERT INTO programmes (faculty_id, name, degree_type, duration_years)
+SELECT faculty_id, 'Physiotherapy', 'BSc(Physiotherapy)', 4
+FROM faculties
+WHERE name = 'Health Sciences'
+  AND university_id = (
+      SELECT university_id
+      FROM universities
+      WHERE short_name = 'UCT'
+  );
+
+INSERT INTO programmes (faculty_id, name, degree_type, duration_years)
+SELECT faculty_id, 'Occupational Therapy', 'BSc(OT)', 4
+FROM faculties
+WHERE name = 'Health Sciences'
+  AND university_id = (
+      SELECT university_id
+      FROM universities
+      WHERE short_name = 'UCT'
+  );
+
+
+
+-- UCT - COMMERCE PROGRAMMES
+
+
+INSERT INTO programmes (faculty_id, name, degree_type, duration_years)
+SELECT faculty_id, 'Financial Accounting: Chartered Accountant stream', 'BCom', 3
+FROM faculties
+WHERE name = 'Commerce, Law and Management'
+  AND university_id = (
+      SELECT university_id
+      FROM universities
+      WHERE short_name = 'UCT'
+  );
+
+INSERT INTO programmes (faculty_id, name, degree_type, duration_years)
+SELECT faculty_id, 'Economics and Finance', 'BCom', 3
+FROM faculties
+WHERE name = 'Commerce, Law and Management'
+  AND university_id = (
+      SELECT university_id
+      FROM universities
+      WHERE short_name = 'UCT'
+  );
+
+INSERT INTO programmes (faculty_id, name, degree_type, duration_years)
+SELECT faculty_id, 'Information Systems', 'BCom', 3
+FROM faculties
+WHERE name = 'Commerce, Law and Management'
+  AND university_id = (
+      SELECT university_id
+      FROM universities
+      WHERE short_name = 'UCT'
+  );
+
+-- UCT - HUMANITIES PROGRAMMES
+
+
+INSERT INTO programmes (faculty_id, name, degree_type, duration_years)
+SELECT faculty_id, 'Bachelor of Arts (General)', 'BA', 3
+FROM faculties
+WHERE name = 'Humanities'
+  AND university_id = (
+      SELECT university_id
+      FROM universities
+      WHERE short_name = 'UCT'
+  );
+
+INSERT INTO programmes (faculty_id, name, degree_type, duration_years)
+SELECT faculty_id, 'Music', 'BMus', 4
+FROM faculties
+WHERE name = 'Humanities'
+  AND university_id = (
+      SELECT university_id
+      FROM universities
+      WHERE short_name = 'UCT'
+  );
+
+INSERT INTO programmes (faculty_id, name, degree_type, duration_years)
+SELECT faculty_id, 'Fine Art', 'BA (Fine Art)', 4
+FROM faculties
+WHERE name = 'Humanities'
+  AND university_id = (
+      SELECT university_id
+      FROM universities
+      WHERE short_name = 'UCT'
+  );
